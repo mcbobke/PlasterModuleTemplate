@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<plasterManifest
+  schemaVersion="1.1"
+  templateType="Project" xmlns="http://www.microsoft.com/schemas/PowerShell/Plaster/v1">
+  <metadata>
+    <name>PlasterModuleTemplate</name>
+    <id>304866b2-7b6f-4ebc-8e99-903751f4722a</id>
+    <version>1.0.0</version>
+    <title>New PowerShell Module</title>
+    <description>A Plaster template for a new PowerShell module.</description>
+    <author>Matt Bobke</author>
+    <tags></tags>
+  </metadata>
+  <parameters></parameters>
+  <content></content>
+</plasterManifest>
