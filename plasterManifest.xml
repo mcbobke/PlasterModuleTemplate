@@ -11,6 +11,14 @@
     <author>Matt Bobke</author>
     <tags></tags>
   </metadata>
-  <parameters></parameters>
-  <content></content>
+  <parameters>
+    <parameter name='ModuleName' type='text' prompt='Name of the module' default="${PLASTER_DestinationName}"/>
+    <parameter name='Version' type='text' default='0.1.0' prompt='Enter the version number for the module'/>
+  </parameters>
+  <content>
+    <message>-----  Creating module directory structure -----</message>
+    <file source='' destination='${PLASTER_PARAM_ModuleName}\public'/>
+    <file source='' destination='${PLASTER_PARAM_ModuleName}\private'/>
+    <message>-----  Creating files -----</message>
+  </content>
 </plasterManifest>
