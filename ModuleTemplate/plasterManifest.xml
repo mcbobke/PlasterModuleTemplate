@@ -14,11 +14,16 @@
   <parameters>
     <parameter name='ModuleName' type='text' prompt='Name of the module' default="${PLASTER_DestinationName}"/>
     <parameter name='Version' type='text' default='0.1.0' prompt='Enter the version number for the module'/>
+    <parameter name="FullName" type="text" prompt="Module authors' name" default="Matthew Bobke"/>
   </parameters>
   <content>
     <message>-----  Creating module directory structure -----</message>
     <file source='' destination='${PLASTER_PARAM_ModuleName}\public'/>
     <file source='' destination='${PLASTER_PARAM_ModuleName}\private'/>
+    <file source='' destination='tests'/>
     <message>-----  Creating files -----</message>
+    <message>-----  Creating template files -----</message>
+    <templateFile source='LICENSE' destination=''/>
+    <templateFile source='README.md' destination=''/>
   </content>
 </plasterManifest>
