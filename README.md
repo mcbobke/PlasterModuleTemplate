@@ -1,4 +1,5 @@
 # PlasterModuleTemplate
+
 A Plaster template for automating the scaffolding of a new PowerShell module.
 
 I'd like to thank the following community members for the guidance I got from their work with Plaster:
