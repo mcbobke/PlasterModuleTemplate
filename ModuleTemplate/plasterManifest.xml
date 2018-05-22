@@ -1,29 +1,32 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<plasterManifest
-  schemaVersion="1.1"
-  templateType="Project" xmlns="http://www.microsoft.com/schemas/PowerShell/Plaster/v1">
+﻿<?xml version='1.0' encoding='utf-8'?>
+<plasterManifest schemaVersion='1.1' templateType='Project' 
+  xmlns="http://www.microsoft.com/schemas/PowerShell/Plaster/v1">
   <metadata>
     <name>PlasterModuleTemplate</name>
     <id>304866b2-7b6f-4ebc-8e99-903751f4722a</id>
     <version>1.0.0</version>
-    <title>New PowerShell Module</title>
+    <title>New PowerShell Module Plaster Template</title>
     <description>A Plaster template for a new PowerShell module.</description>
     <author>Matt Bobke</author>
     <tags></tags>
   </metadata>
   <parameters>
-    <parameter name='ModuleName' type='text' prompt='Name of the module' default="${PLASTER_DestinationName}"/>
-    <parameter name='Version' type='text' default='0.1.0' prompt='Enter the version number for the module'/>
-    <parameter name="FullName" type="text" prompt="Module authors' name" default="Matthew Bobke"/>
+    <parameter name='ModuleName' type='text' prompt='Name of the module' default='${PLASTER_DestinationName}'/>
+    <parameter name='ModuleDesc' type='text' prompt='Short description of this module'/>
+    <parameter name='ModuleVersion' type='text' default='0.0.1' prompt='Enter the version number for the module'/>
+    <parameter name='ModuleAuthor' type='user-fullname' prompt="Module authors' name"/>
   </parameters>
   <content>
     <message>-----  Creating module directory structure -----</message>
     <file source='' destination='${PLASTER_PARAM_ModuleName}\public'/>
     <file source='' destination='${PLASTER_PARAM_ModuleName}\private'/>
-    <file source='' destination='tests'/>
+    <file source='' destination='tests\'/>
     <message>-----  Creating files -----</message>
+    <newModuleManifest destination='${PLASTER_PARAM_ModuleName}\${PLASTER_PARAM_ModuleName}.psd1' moduleVersion='$PLASTER_PARAM_ModuleVersion' rootModule='${PLASTER_PARAM_ModuleName}.psm1' author='$PLASTER_PARAM_ModuleAuthor' description='$PLASTER_PARAM_ModuleDesc'/>
     <message>-----  Creating template files -----</message>
     <templateFile source='LICENSE' destination=''/>
     <templateFile source='README.md' destination=''/>
+    <templateFile source='template.psm1' destination='${PLASTER_PARAM_ModuleName}\${PLASTER_PARAM_ModuleName}.psm1'/>
+    <templateFile source='basicTest.ps1' destination='tests\${PLASTER_PARAM_ModuleName}.tests.ps1'/>
   </content>
 </plasterManifest>
