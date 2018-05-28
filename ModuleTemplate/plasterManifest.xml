@@ -13,7 +13,7 @@
   <parameters>
     <parameter name='ModuleName' type='text' prompt='Name of the module' default='${PLASTER_DestinationName}'/>
     <parameter name='ModuleDesc' type='text' prompt='Short description of this module'/>
-    <parameter name='ModuleVersion' type='text' default='0.0.1' prompt='Enter the version number for the module'/>
+    <parameter name='ModuleVersion' type='text' default='0.0.0' prompt='Enter the version number for the module'/>
     <parameter name='ModuleAuthor' type='user-fullname' prompt="Module authors' name"/>
   </parameters>
   <content>
@@ -24,11 +24,12 @@
     <message>-----  Creating files -----</message>
     <newModuleManifest destination='${PLASTER_PARAM_ModuleName}\${PLASTER_PARAM_ModuleName}.psd1' moduleVersion='$PLASTER_PARAM_ModuleVersion' rootModule='${PLASTER_PARAM_ModuleName}.psm1' author='$PLASTER_PARAM_ModuleAuthor' description='$PLASTER_PARAM_ModuleDesc'/>
     <file source='build.Depend.psd1' destination='build.Depend.psd1'/>
-    <file source='test.Depend.psd1' destination='tests\test.Depend.psd1'/>
     <message>-----  Creating template files -----</message>
     <templateFile source='LICENSE' destination=''/>
     <templateFile source='README.md' destination=''/>
+    <templateFile source='build.ps1' destination=''/>
     <templateFile source='template.psm1' destination='${PLASTER_PARAM_ModuleName}\${PLASTER_PARAM_ModuleName}.psm1'/>
-    <templateFile source='basicTest.ps1' destination='tests\${PLASTER_PARAM_ModuleName}.tests.ps1'/>
+    <templateFile source='basicTest.ps1' destination='tests\${PLASTER_PARAM_ModuleName}.Tests.ps1'/>
+    <templateFile source='module.Build.ps1' destination = '${PLASTER_PARAM_ModuleName}.Build.ps1'/>
   </content>
 </plasterManifest>
