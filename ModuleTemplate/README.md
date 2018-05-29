@@ -1,5 +1,12 @@
-# Module name: <%= $PLASTER_PARAM_ModuleName %>
+# <%= $PLASTER_PARAM_ModuleName %>
+<%= $PLASTER_PARAM_ModuleDesc %>
 
 Author: <%= $PLASTER_PARAM_ModuleAuthor %>
 
-<%= $PLASTER_PARAM_ModuleDesc %>
+## Building
+
+`.\build.ps1`
+
+## Testing
+
+`.\build.ps1 -Task Test`
