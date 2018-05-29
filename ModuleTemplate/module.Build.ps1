@@ -2,9 +2,8 @@ Param(
     $VersionIncrement = 'Patch'
 )
 
-Task Default InstallDependencies, Build, Test
+Task Default InstallDependencies, Build, Test, Distribute
 Task Build CopyOutput, BuildPSD1
-Task Publish Default, Distribute
 
 function PublishTestResults {
     Param (
@@ -34,6 +33,7 @@ function PublishTestResults {
 }
 
 Enter-Build {
+    $Script:publishToRepo = 'PSGallery'
     if (!(Get-Item 'Env:\BH*')) {
         Set-BuildEnvironment
         Set-Item -Path 'Env:\PublishToRepo' -Value $Script:publishToRepo
@@ -47,7 +47,7 @@ Enter-Build {
     $Script:ManifestPath = Join-Path -Path $Script:Destination -ChildPath "$Script:ModuleName.psd1"
     $Script:Imports = ('public', 'private')
     $Script:TestFile = "$PSScriptRoot\output\TestResults_PS$PSVersion.xml"
-    $Script:publishToRepo = 'PSGallery'
+    $Global:TestThisModule = $Script:ManifestPath
 }
 
 Task Clean {
@@ -114,5 +114,22 @@ Task Test {
 }
 
 Task Distribute {
+    if (
+        $Env:BHBuildSystem -ne 'Unknown' -and
+        $Env:BHBranchName -eq 'Master' -and
+        $Env:BHCommitMessage -match '!deploy'
+    ) {
+        $DeployParams = @{
+            Path = $BuildRoot;
+            Force = $true;
+        }
 
+        Invoke-PSDeploy @DeployParams
+    }
+    else {
+        Write-Output "Skipping deployment:"
+        Write-Output "Build system: $Env:BHBuildSystem"
+        Write-Output "Current branch (should be master): $Env:BHBranchName"
+        Write-Output "Commit message (should include '!deploy'): $Env:BHCommitMessage"
+    }
 }
