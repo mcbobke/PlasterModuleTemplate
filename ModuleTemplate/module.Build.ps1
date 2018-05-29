@@ -94,6 +94,9 @@ Task BuildPSD1 {
     Set-ModuleAliases -Name $Script:ManifestPath
 
     $currentVersion = [Version](Get-Metadata -Path $Script:ManifestPath -PropertyName 'ModuleVersion')
+    if ($Env:BHCommitMessage -match '!(major|minor)') {
+        $VersionIncrement = $Matches[1]
+    }
     $newVersion = [Version](Step-Version -Version $currentVersion -By $VersionIncrement)
     Write-Output "Stepping module from current version [$currentVersion] to new version [$newVersion] by [$VersionIncrement]"
     Update-Metadata -Path $Script:ManifestPath -PropertyName 'ModuleVersion' -Value $newVersion
