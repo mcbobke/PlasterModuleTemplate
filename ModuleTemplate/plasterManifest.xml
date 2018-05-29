@@ -25,6 +25,8 @@
     <newModuleManifest destination='${PLASTER_PARAM_ModuleName}\${PLASTER_PARAM_ModuleName}.psd1' moduleVersion='$PLASTER_PARAM_ModuleVersion' rootModule='${PLASTER_PARAM_ModuleName}.psm1' author='$PLASTER_PARAM_ModuleAuthor' description='$PLASTER_PARAM_ModuleDesc'/>
     <file source='build.Depend.psd1' destination=''/>
     <file source='deploy.PSDeploy.ps1' destination=''/>
+    <file source='functions\FunctionTemplate.ps1' destination='${PLASTER_PARAM_ModuleName}\public\FunctionTemplate.ps1'/>
+    <file source='functions\FunctionTemplate.ps1' destination='${PLASTER_PARAM_ModuleName}\private\FunctionTemplate.ps1'/>
     <file source='template.psm1' destination='${PLASTER_PARAM_ModuleName}\${PLASTER_PARAM_ModuleName}.psm1'/>
     <file source='module.Build.ps1' destination = '${PLASTER_PARAM_ModuleName}.Build.ps1'/>
     <file source='tests\basicTest.ps1' destination='tests\${PLASTER_PARAM_ModuleName}.Tests.ps1'/>

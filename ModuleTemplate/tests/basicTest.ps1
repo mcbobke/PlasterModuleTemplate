@@ -8,16 +8,16 @@ Describe "General project validation: $Script:ModuleName" {
     It "Script <file> should be valid powershell" -TestCases $testCase {
         param($file)
 
-        $file.fullname | Should Exist
+        $file.fullname | Should -Exist
 
         $contents = Get-Content -Path $file.fullname -ErrorAction Stop
         $errors = $null
         $null = [System.Management.Automation.PSParser]::Tokenize($contents, [ref]$errors)
-        $errors.Count | Should Be 0
+        $errors.Count | Should -Be 0
     }
 
     It "Module '$Script:ModuleName' can import cleanly" {
-        {Import-Module "$Script:ModuleRoot\$Script:ModuleName.psm1" -Force} | Should Not Throw
+        {Import-Module "$Script:ModuleRoot\$Script:ModuleName.psm1" -Force} | Should -Not -Throw
     }
 }
 
@@ -31,13 +31,13 @@ Describe "PSScriptAnalyzer for module: $Script:ModuleName" {
                 foreach ($rule in $analyzerResults) {
                     It $rule.RuleName {
                         $message = "{0} Line {1}: {2}" -f $rule.Severity, $rule.Line, $rule.message
-                        $message | Should Be ""
+                        $message | Should -Be ""
                     }
                 }
             }
             else {
                 It "Should not fail any rules" {
-                    $analyzerResults | Should BeNullOrEmpty
+                    $analyzerResults | Should -BeNullOrEmpty
                 }
             }
         }
