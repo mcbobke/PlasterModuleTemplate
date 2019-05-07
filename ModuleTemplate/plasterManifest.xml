@@ -31,7 +31,6 @@
     <file source='module.Build.ps1' destination = '${PLASTER_PARAM_ModuleName}.Build.ps1'/>
     <file source='tests\basicTest.ps1' destination='tests\${PLASTER_PARAM_ModuleName}.Tests.ps1'/>
     <file source='tests\Help.Tests.ps1' destination='tests\Help.Tests.ps1'/>
-    <file source='tests\Unit.Tests.ps1' destination='tests\Unit.Tests.ps1'/>
     <message>-----  Creating template files -----</message>
     <templateFile source='LICENSE' destination=''/>
     <templateFile source='README.md' destination=''/>
